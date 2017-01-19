@@ -1,0 +1,28 @@
+/*修改样式*/
+body,ul,h1,p,h2,h3{
+    margin:0;
+    padding: 0;
+    list-style:none;
+    font-family: "微软雅黑";
+    font-size: 15px;
+}
+a{
+    text-decoration: none;
+    color:#565656;
+}
+/*公共部分*/
+.wrap{
+    width: 1200px;
+    margin:0 auto;
+}
+.clear{
+    zoom: 1; 
+}
+.clear:after{
+    content: "";
+    display: block;
+    clear: both;
+}
+.special{
+    color:#ff0000 !important;
+}
