@@ -1,0 +1,63 @@
+<?php 
+    include("DBHelper.php");
+    $sql = "SELECT * FROM hdindex";
+    $res = query($sql);
+    $new_arrival1 = array();
+    $new_arrival2 = array();
+    $new_arrival3 = array();
+    $new_arrival4 = array();
+    $new_arrival5 = array();
+    for($i=0;$i<count($res);$i++){
+        if($res[$i]->type=="韩风女装" && $res[$i]->status=="new"){
+            $obj = (object)array();
+            $obj->goodsID=$res[$i]->goodsID;
+            $obj->goodsTitle=$res[$i]->goodsTitle;
+            $obj->goodsImg=$res[$i]->goodsImg;
+            $obj->goodsPrice=$res[$i]->goodsPrice;
+            $obj->goodsOldPrice=$res[$i]->goodsOldPrice;
+           $new_arrival1[] = $obj; 
+        }
+        if($res[$i]->type=="甜美少女" && $res[$i]->status=="new"){
+            $obj = (object)array();
+            $obj->goodsID=$res[$i]->goodsID;
+            $obj->goodsTitle=$res[$i]->goodsTitle;
+            $obj->goodsImg=$res[$i]->goodsImg;
+            $obj->goodsPrice=$res[$i]->goodsPrice;
+            $obj->goodsOldPrice=$res[$i]->goodsOldPrice;
+           $new_arrival2[] = $obj; 
+        }
+        if($res[$i]->type=="迪葵纳" && $res[$i]->status=="new"){
+            $obj = (object)array();
+            $obj->goodsID=$res[$i]->goodsID;
+            $obj->goodsTitle=$res[$i]->goodsTitle;
+            $obj->goodsImg=$res[$i]->goodsImg;
+            $obj->goodsPrice=$res[$i]->goodsPrice;
+            $obj->goodsOldPrice=$res[$i]->goodsOldPrice;
+           $new_arrival3[] = $obj; 
+        }
+        if($res[$i]->type=="简约女装" && $res[$i]->status=="new"){
+            $obj = (object)array();
+            $obj->goodsID=$res[$i]->goodsID;
+            $obj->goodsTitle=$res[$i]->goodsTitle;
+            $obj->goodsImg=$res[$i]->goodsImg;
+            $obj->goodsPrice=$res[$i]->goodsPrice;
+            $obj->goodsOldPrice=$res[$i]->goodsOldPrice;
+           $new_arrival4[] = $obj; 
+        }
+        if($res[$i]->type=="韩风童装" && $res[$i]->status=="new"){
+            $obj = (object)array();
+            $obj->goodsID=$res[$i]->goodsID;
+            $obj->goodsTitle=$res[$i]->goodsTitle;
+            $obj->goodsImg=$res[$i]->goodsImg;
+            $obj->goodsPrice=$res[$i]->goodsPrice;
+            $obj->goodsOldPrice=$res[$i]->goodsOldPrice;
+           $new_arrival5[] = $obj; 
+        }
+    }
+    $J_new_arrival1 = json_encode($new_arrival1, JSON_UNESCAPED_UNICODE);
+    $J_new_arrival2 = json_encode($new_arrival2, JSON_UNESCAPED_UNICODE);
+    $J_new_arrival3 = json_encode($new_arrival3, JSON_UNESCAPED_UNICODE);
+    $J_new_arrival4 = json_encode($new_arrival4, JSON_UNESCAPED_UNICODE);
+    $J_new_arrival5 = json_encode($new_arrival5, JSON_UNESCAPED_UNICODE);
+    echo '[{"msg":"新品韩风女装","data":'.$J_new_arrival1.'},{"msg":"新品甜美少女","data":'.$J_new_arrival2.'},{"msg":"新品迪葵纳","data":'.$J_new_arrival3.'},{"msg":"新品简约女装","data":'.$J_new_arrival4.'},{"msg":"新品韩风童装","data":'.$J_new_arrival5.'}]';
+?>

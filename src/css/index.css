@@ -504,7 +504,11 @@ header {
       position: absolute;
       border: 1px solid #eee;
       border-right: 0;
-      border-bottom: 0; }
+      border-bottom: 0;
+      display: none; }
+      .introduce .wrap .company_list ul:first-child {
+        display: block;
+        z-index: 1; }
       .introduce .wrap .company_list ul li {
         float: left;
         width: 168px;
@@ -705,6 +709,16 @@ header {
           padding: 0 8px 0 7px;
           margin-left: 7px;
           margin-right: 8px; }
+      .new_arrival .tab_brand ul .current a {
+        background: url(../img/index/2.png);
+        color: white; }
+  .new_arrival .goods_show {
+    height: 296px; }
+    .new_arrival .goods_show ul {
+      display: none;
+      background: white; }
+      .new_arrival .goods_show ul:first-child {
+        display: block; }
 
 .HF_girl {
   width: 100%;
@@ -1407,9 +1421,11 @@ header {
     width: 1140px;
     height: 30px;
     float: left;
+    position: relative;
     overflow: hidden; }
   .web_link ul {
-    width: 2370px; }
+    width: 2370px;
+    position: absolute; }
     .web_link ul li {
       float: left;
       margin-right: 10px; }

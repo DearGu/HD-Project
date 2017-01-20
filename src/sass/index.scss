@@ -706,6 +706,11 @@ header{
                    border: 1px solid #eee;
                    border-right:0;
                    border-bottom: 0;
+                   display:none;
+                   &:first-child{
+                    display:block;
+                    z-index:1;
+                   }
                    li{
                        float: left;
                        width: 168px;
@@ -978,7 +983,23 @@ header{
                    margin-right: 8px;      
                 }
             }
+            .current{
+              a{
+                background:url(../img/index/2.png);
+                color:white;
+              }
+            }
         }
+    }
+    .goods_show{
+      height:296px;
+      ul{
+        display:none;
+        background:white;
+        &:first-child{
+          display:block;
+        }
+      }
     }
 }
 
@@ -1979,10 +2000,12 @@ header{
     width:1140px;
     height:30px;
     float:left;
+    position:relative;
     overflow:hidden;
   }
   ul{
     width:2370px;
+    position:absolute;
     li{
       float:left;
       margin-right: 10px;
