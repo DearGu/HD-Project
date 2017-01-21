@@ -27,6 +27,77 @@ a {
 .special {
   color: #ff0000 !important; }
 
+#xf_search {
+  width: 100%;
+  height: 50px;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 6;
+  display: none; }
+  #xf_search .wrap > div {
+    float: left; }
+  #xf_search .wrap .xf_logo {
+    margin-top: 5px;
+    margin-left: 40px; }
+  #xf_search .wrap .xf_input {
+    margin-left: 103px;
+    margin-top: 9px;
+    height: 41px; }
+    #xf_search .wrap .xf_input input {
+      width: 646px;
+      height: 28px;
+      outline: none;
+      text-indent: 5px;
+      padding: 0;
+      border: 0;
+      background-color: white; }
+    #xf_search .wrap .xf_input button {
+      width: 86px;
+      height: 28px;
+      line-height: 28px;
+      background-color: #c80a28;
+      opacity: 1;
+      padding: 0;
+      border: 0;
+      color: white;
+      font-family: "微软雅黑";
+      font-size: 16px;
+      vertical-align: bottom;
+      outline: none;
+      letter-spacing: 4px; }
+      #xf_search .wrap .xf_input button:hover {
+        cursor: pointer; }
+  #xf_search .wrap .xf_msg {
+    height: 50px;
+    line-height: 50px;
+    margin-left: 52px;
+    color: white;
+    font-size: 12px;
+    font-family: "宋体";
+    float: right; }
+
+.float_box {
+  position: fixed;
+  display: none;
+  margin-top: 150px;
+  right: 0;
+  background: url(../img/index/float_box4.png) no-repeat 0 -163px; }
+  .float_box a {
+    display: block;
+    width: 72px;
+    height: 78px;
+    margin-bottom: 1px; }
+    .float_box a:nth-child(1):hover {
+      background: url(../img/index/float_box4.png) no-repeat -78px -163px; }
+    .float_box a:nth-child(2):hover {
+      background: url(../img/index/float_box4.png) no-repeat -78px -242px; }
+    .float_box a:nth-child(3):hover {
+      background: url(../img/index/float_box4.png) no-repeat -78px -321px; }
+    .float_box a:nth-child(4):hover {
+      background: url(../img/index/float_box4.png) no-repeat -78px -400px; }
+    .float_box a:nth-child(5):hover {
+      background: url(../img/index/float_box4.png) no-repeat -78px -479px; }
+
 header {
   width: 100%;
   min-width: 1200px;

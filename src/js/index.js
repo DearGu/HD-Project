@@ -13,15 +13,27 @@ $(function(){
 	var $hotSale = $(".hot_sale");
 	var $webLinkShow = $(".web_link_show");
 	var $webLink = $webLinkShow.find("ul");
+	var $HFList = $(".HF_goodslist");
+	var $DIList = $(".DI_goodslist");
+	var $NNList = $(".NN_goodslist");
+	var $MHList = $(".MH_goodslist");
+	var $NBSList = $(".NBS_goodslist");
+	var xfSearch = $("#xf_search");
+	var floatBox = $(".float_box");
 
+	// 从数据库中读取数据并显示在页面上
 	$.get("php/index.php",function(data){
 		var res = JSON.parse(data);
-		console.log(res);
+		// console.log(res);
 		for(var i=0;i<res.length;i++){
+			// 新品上架商品
 			if(res[i].msg == "新品韩风女装"){
 				var $glis = $goodsShow.find('>ul').eq(0).children();
 				$glis.each(function(idx, item) {
-					$(item).find("img").attr("src",res[i].data[idx].goodsImg);
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
@@ -30,7 +42,10 @@ $(function(){
 			if(res[i].msg == "新品甜美少女"){
 				var $glis = $goodsShow.find('>ul').eq(1).children();
 				$glis.each(function(idx, item) {
-					$(item).find("img").attr("src",res[i].data[idx].goodsImg);
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
@@ -39,7 +54,10 @@ $(function(){
 			if(res[i].msg == "新品迪葵纳"){
 				var $glis = $goodsShow.find('>ul').eq(2).children();
 				$glis.each(function(idx, item) {
-					$(item).find("img").attr("src",res[i].data[idx].goodsImg);
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
@@ -48,7 +66,10 @@ $(function(){
 			if(res[i].msg == "新品简约女装"){
 				var $glis = $goodsShow.find('>ul').eq(3).children();
 				$glis.each(function(idx, item) {
-					$(item).find("img").attr("src",res[i].data[idx].goodsImg);
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
@@ -57,7 +78,89 @@ $(function(){
 			if(res[i].msg == "新品韩风童装"){
 				var $glis = $goodsShow.find('>ul').eq(4).children();
 				$glis.each(function(idx, item) {
-					$(item).find("img").attr("src",res[i].data[idx].goodsImg);
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
+				});
+			}
+			// 韩都衣舍商品
+			if(res[i].msg == "韩都衣舍"){
+				var $HFlis1 = $HFList.find('>ul').eq(0).children();
+				var $HFlis2 = $HFList.find('>ul').eq(1).children();
+				$HFlis1.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
+				});
+				$HFlis2.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx+5].goodsImg,
+						alt:res[i].data[idx+5].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx+5].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx+5].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx+5].goodsOldPrice + ".00");
+				});
+			}
+
+			// 迪葵纳商品
+			if(res[i].msg == "迪葵纳"){
+				var $DIlis = $DIList.find('>ul').eq(0).children();
+				$DIlis.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
+				});
+			}
+
+			// 娜娜日记商品
+			if(res[i].msg == "娜娜日记"){
+				var $NNlis = $NNList.find('>ul').eq(0).children();
+				$NNlis.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
+				});
+			}
+
+			// 米妮哈鲁商品
+			if(res[i].msg == "米妮哈鲁"){
+				var $MHlis = $MHList.find('>ul').eq(0).children();
+				$MHlis.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
+					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
+					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
+				});
+			}
+
+			// 尼班诗商品
+			if(res[i].msg == "尼班诗"){
+				var $NBSlis = $NBSList.find('>ul').eq(0).children();
+				$NBSlis.each(function(idx, item) {
+					$(item).find("img").attr({
+						src:res[i].data[idx].goodsImg,
+						alt:res[i].data[idx].goodsTitle
+					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
@@ -66,7 +169,28 @@ $(function(){
 		}
 		
 	});
+	
+	// 悬浮盒子和悬浮搜索栏的出现和隐藏
+	$(window).scroll(function() {
+		if($("body").scrollTop()>=770){
+			xfSearch.slideDown();
+			floatBox.fadeIn();
+		}
+		else{
+			xfSearch.slideUp();
+			if($("body").scrollTop()<=250){
+				floatBox.hide();
+			}			
+		}
+	});
 
+	// 给悬浮盒子的top按钮绑定点击事件
+	floatBox.children().last().on("click",function(e){
+		e.preventDefault();
+		$("body").animate({
+			scrollTop:0
+		});
+	});
 
 // 给header的网站导航绑定hover事件
 	
@@ -92,7 +216,8 @@ $(function(){
 	// 给pullListContent下的li绑定鼠标移入移出事件（事件委托）
 	pullListContent.find('>li').on("mouseenter",function(){
 		var currentindex = $(this).index();
-		pullListContent.find('>div').eq(currentindex).fadeIn();
+
+		pullListContent.find('>div').eq(currentindex).stop().fadeIn(600);
 		$(this).css({
 			backgroundColor:"#393939",
 		});
@@ -102,7 +227,7 @@ $(function(){
 		$(this).find('span').eq(0).css({
 			backgroundImage:'url(img/index/tb0' + (currentindex+1) + '.png)',
 		});
-		$(this).find("h3").animate({
+		$(this).find("h3").stop().animate({
 			marginLeft:6,
 		},250);
 	});

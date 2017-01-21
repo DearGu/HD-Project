@@ -1,6 +1,93 @@
 @import "common.scss";
 
-
+// 悬浮搜索栏
+#xf_search{
+  width:100%;
+  height:50px;
+  position:fixed;
+  background-color: rgba(0,0,0,.8);
+  z-index: 6;
+  display:none;
+  .wrap{
+    >div{
+      float:left;
+    }
+    .xf_logo{
+      margin-top: 5px;
+      margin-left: 40px;
+    }
+    .xf_input{
+      margin-left: 103px;
+      margin-top: 9px;
+      height:41px;
+      input{
+              width: 646px;
+              height: 28px;
+              outline: none;
+              text-indent: 5px; 
+              padding: 0;
+              border: 0;
+              background-color: white;
+            }
+      button{
+          width: 86px;
+          height: 28px;
+          line-height: 28px;
+          background-color: #c80a28;
+          opacity:1;
+          padding: 0;
+          border: 0;
+          color: white;
+          font-family: "微软雅黑";
+          font-size: 16px;
+          vertical-align: bottom;
+          outline: none;
+          letter-spacing: 4px;
+          &:hover{
+              cursor: pointer;
+        }
+      }
+    }
+    .xf_msg{
+      height:50px;
+      line-height: 50px;
+      margin-left: 52px;
+      color:white;
+      font-size: 12px;
+      font-family: "宋体";
+      float:right;
+    }
+  }  
+}
+// 悬浮盒子
+.float_box{
+  position:fixed;
+  display:none;
+  margin-top:150px;
+  right:0;
+  background:url(../img/index/float_box4.png) no-repeat 0 -163px;
+  a{
+    display:block;
+    width: 72px;
+    height:78px;
+    margin-bottom: 1px;
+    &:nth-child(1):hover{
+        background:url(../img/index/float_box4.png) no-repeat -78px -163px;
+      }
+    &:nth-child(2):hover{
+        background:url(../img/index/float_box4.png) no-repeat -78px -242px;
+      }
+    &:nth-child(3):hover{
+        background:url(../img/index/float_box4.png) no-repeat -78px -321px;
+      }
+    &:nth-child(4):hover{
+        background:url(../img/index/float_box4.png) no-repeat -78px -400px;
+      }
+    &:nth-child(5):hover{
+        background:url(../img/index/float_box4.png) no-repeat -78px -479px;
+      }
+  }
+}
 //顶部
 header{
     width: 100%;
