@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>登录</title>
-	<link rel="stylesheet" href="../css/login.css">
+	<title>注册</title>
+	<link rel="stylesheet" href="../css/register.css">
 	<script src="../js/jquery-3.1.1.js"></script>
-	<script src="../js/login.js"></script>
+	<script src="../js/register.js"></script>
 </head>
 <body>
 	<!-- 悬浮盒子 -->
@@ -35,10 +35,10 @@
 					<ul class="clear">
 						<li>您好，欢迎光临韩都衣舍！</li>
 						<li>
-							<a href="">登录</a>
+							<a href="http://localhost/HD/html/login.html">登录</a>
 						</li>
 						<li>
-							<a href="">注册</a>
+							<a href="http://localhost/HD/html/register.html">注册</a>
 						</li>
 						<li>
 							<a href="">购物车</a>
@@ -468,52 +468,71 @@
 			</ul>
 		</div>
 	</div>
-	<!-- 登录广告 -->
+	<!-- 注册广告 -->
 	<div class="login_banner">
 		<a href=""><img src="http://localhost/HD/img/login/banner1.jpg" alt=""></a>
 	</div>
-	<!-- 登录框 -->
-	<div class="news_login">
+	<!-- 填写注册信息 -->
+	<div class="register_msg">
 		<div class="wrap clear">
-			<div class="news_login_L">
-				<img src="http://localhost/HD//img/login/410-290.png" height="290" width="410" alt="">
+			<div class="register_msg_L">
+				<div class="quick_login">
+					<span>已是韩都衣舍用户：</span>
+					<button class="quick_Btn">直接登录</button>
+				</div>
+				<div class="hd_QR">
+					<img src="../img/register/367-250.png" alt="">
+				</div>
+				<div class="register_dy">
+					<input type="text"><button class="dy_Btn"></button>
+				</div>
 			</div>
-			<div class="news_login_R">
-				<div class="login_form">
-					<h1>用户登录</h1>
-					<div class="login_msg">
-						<div class="msg_wrap">
-							<div class="login_label">用户名:</div>
-							<input type="text" id="username" name="username" placeholder="邮箱地址/手机号">
-						</div>
-						<div class="msg_wrap">
-							<div class="login_label">密码:</div>
-							<input type="password" id="psw" name="psw">
-						</div>
-						<div class="msg_wrap">
-							<div class="login_label">验证码:</div>
-							<input type="text" id="checkCode" name="checkCode"><span class="yzm"></span>
-						</div>
-						<span class="error_msg" style="display:none"></span>	
-						<button class="msg_btn" name="submit">立即登录</button>
-						<div class="save_msg">
-							<input type="checkbox">保存登录信息	
-						</div>					
-						<div class="login_forget">
-							<a href="">注册</a><span>|</span><a href="">忘记密码?</a>
-						</div>		
-					</div>
+			<div class="register_msg_R">
+				<div class="register_title">
+					填写您的信息：
 				</div>
-				<div class="login_way">
-					<div>其他登录方式：</div>
-					<span></span>
-					<span></span>
-					<span></span>
-					<span></span>
+				<div class="register_wrap">
+					<div class="register_list_name">Email：</div>
+					<input type="text">
+					<p>Email地址作为用户名，同时也用于接收账户信息、订单通知及密码找回等功能</p>
 				</div>
+				<div class="register_wrap">
+					<div class="register_list_name">密码：</div>
+					<input type="text">
+					<p>8-24位字符，必须包含字母、数字的组合</p>
+				</div>
+				<div class="register_wrap">
+					<div class="register_list_name">确认密码：</div>
+					<input type="text">
+					<p>请再次输入密码，两次输入必须一致</p>
+				</div>
+				<div class="register_wrap">
+					<div class="register_list_name">验证码：</div>
+					<input type="text">
+					<span class="yzm"></span>
+				</div>
+				<div class="xieyi">
+					<input type="checkbox" checked>我已看过并接受<a href="">《用户协议》</a>
+				</div>
+				<button class="register_Btn">同意协议并注册</button>
 			</div>
 		</div>
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	<!-- 底部信息 -->
 	<div class="footer_info">
 		<div class="wrap clear">
