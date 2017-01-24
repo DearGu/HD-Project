@@ -116,6 +116,93 @@ header{
               }
           }
       }
+
+      .login_bar{
+        position:absolute;
+        height:29px;
+        z-index: 2;
+        left:50%;
+        top:-1.5px;
+        >li{
+          float:left;
+          margin-left:18px;
+          &:first-child{
+            >a{
+              display:inline-block;
+              &:first-child{
+                width:110px;
+                overflow:hidden;
+                white-space: nowrap;
+                text-overflow:ellipsis;
+                vertical-align: middle;
+              }
+              &:last-child{   
+                width:14px;
+                height:13px;
+                background:url("http://localhost/HD/img/index/lv.png") no-repeat;
+                vertical-align: middle;
+                margin-left: 5px;
+              }
+            }
+          }
+          &:last-child{
+            margin-left: 15px;
+            line-height: normal;
+            position:relative;
+          }
+          .MyHD{
+            padding:0 5px;
+            box-sizing: border-box;
+            position:absolute;
+            width:72px;
+            top:4px;
+            padding-top: 3px;
+            border:1px solid #f5f5f5;
+            span{
+              position:relative;
+              top:-2px;
+            }
+            em{
+              display:inline-block;
+              width:6px;
+              height:3px;
+              background:url("http://localhost/HD/img/index/icon.png") no-repeat -13px -33px;
+              margin-left: 5px;
+              vertical-align: middle;
+              position:relative;
+              top:-2px;
+            }
+            &:hover{
+              background-color: white;
+              border:1px solid #ddd;
+              >a{
+                color:#c80a28;
+              }
+              em{
+                background:url("http://localhost/HD/img/index/icon.png") no-repeat -22px -33px;
+              }
+              .MyHD_List{
+                display:block;
+                border-top:0;
+              }
+            }
+            .MyHD_List{
+              background-color: white;
+              display:none;
+              >li{
+                line-height: normal;
+                margin-bottom: 10px;
+                &:first-child{
+                  margin-top: 5px;
+                }
+                &:last-child{
+                  margin-bottom: 5px;
+                }
+              }
+            }
+          } 
+        }
+      }
       
       .weblist{
           width: 100%;
@@ -617,192 +704,118 @@ header{
     }
 }
 
-// 注册广告
-.login_banner{
+// 用户中心内容
+.user_content{
   width:100%;
   min-width:1200px;
-  margin-top:20px;
-  a{
-    width:1000px;
-    display:block;
-    margin:auto;
-    img{
-      display:block;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  .wrap{
+    >div{
+      float:left;
+    }
+    .user_content_L{
+      width:350px;
+      margin-left:160px;
+      margin-right: 5px;
+    }
+    .user_content_R{
+      margin-top: 20px;
+      h2{
+        font-size: 16px;
+        margin-bottom: 35px;
+      }
+      .shop_tips{
+        margin-left: 45px;
+        >a{
+          display:inline-block;
+          width:168px;
+          height:36px;
+          font-size: 18px;
+          line-height:36px;
+          text-align: center;
+          color:white;
+          font-weight: bold;
+          background-color: #c80a28;
+          margin-right: 48px;
+        }
+        p{
+          margin-top: 32px;
+          font-size: 14px;
+          a{
+            font-size: 14px;
+            color:#c80a28;
+          }
+        }
+      }
     }
   }
 }
-// 填写注册信息
-.register_msg{
+
+// 完善用户信息
+.user_msg{
   width:100%;
-  min-width:1200px;
-  margin-top: 30px;
+  min-width: 1200px;
   margin-bottom: 15px;
-  font-size: 12px;
-  .wrap{
-     >div{
-      float:left;
+  .user_msg_table{
+    border:1px solid #ddd;
+    h1{
+      font-size: 16px;
+      height:37px;
+      padding-left: 12px;
+      line-height: 37px;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 15px;
     }
-    .register_msg_L{
-      border-right: 1px dashed #ddd;
-      margin-left: 125px;
-      padding-top: 18px;
-      padding-right: 50px;
-      height:410px;
-      .quick_login{
-        width:360px;
-        font-size: 13px;
-        margin-bottom: 10px;
-        .quick_Btn{
-          width:103px;
-          height:29px;
-          color:white;
-          border:0;
-          outline:none;
-          font-size: 16px;
-          margin-left: 10px;
-          background:url(http://localhost/HD/img/login/NEWS_login.png) no-repeat -347px -211px;
-          &:hover{
-            cursor:pointer;
-          }
+    ul{
+      margin-bottom: 15px;
+      li{
+        float:left;
+        margin-left: 20px;
+        border-right: 1px dashed #ddd;
+        padding-right: 97px;
+        >div{
+          float:left;
         }
-      }
-      .register_dy{
-        margin-top: 30px;
-        padding: 0;
-        input{
-          width:252px;
-          height:23px;
-          border:1px solid #ddd;
-          color:#666;
-          outline:none;
+        .user_msg_img{
+          width:75px;
+          height:80px;
+          margin-right: 15px;
         }
-        .dy_Btn{
-          width:70px;
-          height:22px;
-          border:0;
-          vertical-align: middle;
-          outline:none;
-          &:hover{
-            cursor:pointer;
+        .user_msg_content{
+          width:190px;
+          margin-top: 4px;
+          p{
+            font-size: 12px;
+            margin-top: 16px;
+            color:#666;
           }
-          background:url(http://localhost/HD/img/index/footer00.png);
-          margin-left: 8px;
-        }
-      }
-    }
-    .register_msg_R{
-      margin-left: 50px;
-      .register_title{
-        font-size: 12px;
-        margin-bottom: 20px;
-      }
-      .register_wrap{
-        margin-left: 40px;
-        &:nth-child(5){
-          input{
-            width:117px;
-          }
-          .yzm{
-            display:inline-block;
-            width:86px;
-            height:34px;
-            background-color: #ddd;
-            vertical-align: top;
-            margin-left: 4px;
-            text-align:center;
-            line-height:34px;
-            font-weight:bold;
-            letter-spacing:3px;
-            font-size:16px;
+          a{
             &:hover{
-              cursor:pointer;
+              text-decoration: underline;
             }
           }
         }
-        .register_list_name{
-          width:75px;
-          height:31px;
-          line-height: 31px;
-          text-align: right;
-          display:inline-block;
+        &:nth-child(1){
+          .user_msg_img{
+           background:url(http://localhost/HD/img/register/reg_icon.png) no-repeat;
+          }
         }
-        input{
-          padding:0;
-          border:1px solid #ddd;
-          height:31px;
-          width:210px;
-          outline:none;
+         &:nth-child(2){
+          .user_msg_img{
+           background:url(http://localhost/HD/img/register/reg_icon.png) no-repeat -80px 0;
+          }
         }
-        p{
-          margin-left: 78px;
-          font-size: 12px;
-          padding: 15px 0;
-          color:#7b7b7b;
-        }
-        .error_tip_e{
-          display:inline-block;
-          vertical-align:bottom;
-          width:190px;
-          height:33px;
-          line-height: 33px;
-          margin-left: 5px;
-          color:#c80a28;
-        }
-        .error_tip_p{
-          display:inline-block;
-          vertical-align:bottom;
-          width:190px;
-          height:33px;
-          line-height: 33px;
-          margin-left: 5px;
-          color:#c80a28;
-        }
-        .error_tip_cp{
-          display:inline-block;
-          vertical-align:bottom;
-          width:190px;
-          height:33px;
-          line-height: 33px;
-          margin-left: 5px;
-          color:#c80a28;
-        }
-        .error_tip_y{
-          display:inline-block;
-          vertical-align:bottom;
-          width:190px;
-          height:33px;
-          line-height: 33px;
-          margin-left: 5px;
-          color:#c80a28;
-        }
-      }
-      .xieyi{
-        margin-left: 114px;
-        font-size: 16px;
-        margin-top: 20px;
-        margin-bottom: 18px;
-        a{
-          font-size: 16px;
-          color:#bf0000;
-        }
-      }
-      .register_Btn{
-        width:171px;
-        height:43px;
-        margin-left: 114px;
-        border:0;
-        outline:none;
-        font-size: 16px;
-        color:white;
-        background:url(http://localhost/HD/img/login/NEWS_login.png) no-repeat 0 -51px;
-        &:hover{
-          cursor:pointer;
+         &:nth-child(3){
+          border-right:0;
+          .user_msg_img{
+           background:url(http://localhost/HD/img/register/QQ.jpg) no-repeat;
+          }
         }
       }
     }
-  } 
+  }
 }
-
 
 
 

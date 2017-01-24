@@ -27,7 +27,7 @@ $(function(){
 	// 判断是否为登录状态
 	var cookies = document.cookie.split("; ");
 	for(var i=0;i<cookies.length;i++){
-		var arr = cookies[0].split("=");
+		var arr = cookies[i].split("=");
 		if(arr[0] == "username"){
 			$headerUl.find(">li").eq(0).hide();
 			$headerUl.find(">li").eq(1).hide();
