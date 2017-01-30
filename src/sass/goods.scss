@@ -117,6 +117,93 @@ header{
           }
       }
       
+      .login_bar{
+        position:absolute;
+        height:29px;
+        z-index: 2;
+        left:50%;
+        top:-1.5px;
+        >li{
+          float:left;
+          margin-left:18px;
+          &:first-child{
+            >a{
+              display:inline-block;
+              &:first-child{
+                width:110px;
+                overflow:hidden;
+                white-space: nowrap;
+                text-overflow:ellipsis;
+                vertical-align: middle;
+              }
+              &:last-child{   
+                width:14px;
+                height:13px;
+                background:url("http://localhost/HD/img/index/lv.png") no-repeat;
+                vertical-align: middle;
+                margin-left: 5px;
+              }
+            }
+          }
+          &:last-child{
+            margin-left: 15px;
+            line-height: normal;
+            position:relative;
+          }
+          .MyHD{
+            padding:0 5px;
+            box-sizing: border-box;
+            position:absolute;
+            width:72px;
+            top:4px;
+            padding-top: 3px;
+            border:1px solid #f5f5f5;
+            span{
+              position:relative;
+              top:-2px;
+            }
+            em{
+              display:inline-block;
+              width:6px;
+              height:3px;
+              background:url("http://localhost/HD/img/index/icon.png") no-repeat -13px -33px;
+              margin-left: 5px;
+              vertical-align: middle;
+              position:relative;
+              top:-2px;
+            }
+            &:hover{
+              background-color: white;
+              border:1px solid #ddd;
+              >a{
+                color:#c80a28;
+              }
+              em{
+                background:url("http://localhost/HD/img/index/icon.png") no-repeat -22px -33px;
+              }
+              .MyHD_List{
+                display:block;
+                border-top:0;
+              }
+            }
+            .MyHD_List{
+              background-color: white;
+              display:none;
+              >li{
+                line-height: normal;
+                margin-bottom: 10px;
+                &:first-child{
+                  margin-top: 5px;
+                }
+                &:last-child{
+                  margin-bottom: 5px;
+                }
+              }
+            }
+          } 
+        }
+      }
+
       .weblist{
           width: 100%;
           height: 150px;
@@ -792,14 +879,60 @@ main{
       .goods_show{
         border:1px solid #ddd;
         border-right: 0;
+        position:relative;
         .show_zone{
           width:480px;
           height:480px;
-          img{
+          position:relative;
+          >img{
             width:100%;
             height:100%;
           }
+          >span{
+            display:block;
+            width:288px;
+            height:288px;
+            background-color:white;
+            position:absolute;
+            top: 0;
+            left: 0;
+            box-sizing: border-box;
+            border:1px solid #ddd;
+            opacity:0.5;
+            &:hover{
+              cursor:crosshair;
+            }
+          }
         }
+        .bigshow_zone{
+            display:none;
+            width:480px;
+            height:480px;
+            background:red;
+            position:absolute;
+            top:0;
+            left:490px;
+            z-index: 2;
+            overflow:hidden;
+            border:1px solid #ddd;
+            box-sizing: border-box;
+            .bigshow_title{
+              display:block;
+              height:18px;
+              color:white;
+              background-color: #999;
+              text-align: center;
+              font-size: 12px;
+              line-height: 18px;
+              opacity:0.8;
+            }
+            img{
+              position:absolute;
+              top:0;
+              left:0;
+              z-index: -1;
+            }
+          }
         .small_show{
           padding:12px 0;
           margin-right: 8px;
@@ -816,6 +949,7 @@ main{
               height:70px;
               box-sizing: border-box;
               margin-right: 8px;
+              border:1px solid transparent;
               &:last-child{
                 margin-right: 0;
               }
@@ -989,6 +1123,9 @@ main{
               box-sizing: border-box;
               font-size: 14px;
               color:#333;
+              &:hover{
+                cursor:pointer;
+              }
             }
             .attr_selected{
               border-color: #c80a28;
