@@ -908,7 +908,6 @@ main{
             display:none;
             width:480px;
             height:480px;
-            background:red;
             position:absolute;
             top:0;
             left:490px;
@@ -1263,6 +1262,7 @@ main{
       }
       .goods_details{
         margin-top: 20px;
+        width:998px;
         .tabBar{
           height:40px;
           box-sizing: border-box;
@@ -1273,6 +1273,7 @@ main{
           .tabBar_items{
             height:35px;
             background-color: white;
+            position:relative;
             ul{
               li{
                 float:left;
@@ -1304,12 +1305,32 @@ main{
                   background-color: #f5f3f0;
                 }
             }
+            .quickAddCart{
+              display:block;
+              display:none;
+              position:absolute;
+              color:white;
+              background-color:#c80a28;
+              width:87px;
+              height:27px;
+              font-size:12px;
+              line-height:27px;
+              text-align:center;
+              border-radius:3px;
+              top:4px;
+              right:10px;
+            }
           }
         }
-        >ul{
-          padding:0 123px;
+        .tabBar_fixed{
+            position:fixed;
+            width:74%;
+            top:0;
+          }
+        >ul{      
           >li{
             &:nth-child(1){
+              padding:0 123px;
               text-align: center;
               margin-bottom: 40px;
               .attr_list{
@@ -1336,15 +1357,22 @@ main{
                   }
                 }
               }
-              img{
-                  margin-bottom: 15px;
-                  display:block;
-                }
-              img:last-of-type{
-                    margin-bottom: 0;
-                }
               span{
                 font-size: 14px;
+              }
+            }
+            &:nth-child(2){
+              display:none;
+              text-align: center;
+              font-size: 12px;
+              position:relative;
+              .contentArea{
+                padding: 10px 0;
+              }
+              span{
+                position:absolute;;
+                right:15px;
+                bottom:-45px;
               }
             }
           }

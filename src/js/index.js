@@ -88,6 +88,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -100,6 +102,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -112,6 +116,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -124,6 +130,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -136,6 +144,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -150,6 +160,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -159,6 +171,8 @@ $(function(){
 						alt:res[i].data[idx+5].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx+5].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx+5].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx+5].goodsOldPrice + ".00");
 				});
@@ -173,6 +187,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -187,6 +203,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -201,6 +219,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});
@@ -215,6 +235,8 @@ $(function(){
 						alt:res[i].data[idx].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx].goodsTitle);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx].goodsOldPrice + ".00");
 				});

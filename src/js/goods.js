@@ -19,6 +19,106 @@ $(function(){
 	var $showZone = $(".show_zone");
 	var $bigShowZone = $(".bigshow_zone");
 	var $enlargeArea = $(".enlarge_area");
+	var $tabBar = $(".tabBar");
+	var $goodsTitle = $(".goods_title");
+	var $goodsStyle = $(".goods_style");
+	var $goodsMsg = $(".goods_msg");
+	var $attrList = $(".attr_list");
+	var $imgShow = $(".imgShow");
+	var $detailsArea = $(".details_area");
+
+	// 根据search参数获取商品的信息
+	var gID = location.search.split("=")[1];
+	$.get('http://localhost/HD/php/goods.php',{goodsID:gID},function(data) {
+		var res = JSON.parse(data);
+		var goodsData = res.data[0]
+		if(res.msg == "success"){
+			console.log(goodsData);
+			$goodsTitle.text(goodsData.goodsTitle);
+			$goodsStyle.text(goodsData.style);
+			$showZone.find("img").attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_b
+			});
+			// 加载大图
+			$bigShowZone.find("img").attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_b
+			});
+			// 加载小图片
+			$smallShow.find('li').eq(0).find('>img').attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_s1
+				});
+			$smallShow.find('li').eq(1).find('>img').attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_s2
+				});
+			$smallShow.find('li').eq(2).find('>img').attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_s3
+				});
+			$smallShow.find('li').eq(3).find('>img').attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_s4
+				});
+			$smallShow.find('li').eq(4).find('>img').attr({
+				src:"http://localhost/HD/img/goods/"+goodsData.img_s5
+				});
+			// 加载商品信息
+			$goodsMsg.find('.produce_name').text(goodsData.goodsTitle);
+			$goodsMsg.find('.Art_NO').text(goodsData.Art_Num);
+			$goodsMsg.find('.market_price').text(goodsData.goodsOldPrice+".00");
+			$goodsMsg.find('.promote_price').text(goodsData.goodsPrice+".00");
+			$goodsMsg.find('.sale_count').text(goodsData.sales);
+			$goodsMsg.find('.inventory').text(goodsData.inventory);
+			$goodsMsg.find('.size_list').html("");
+			var sizeList_arr = goodsData.size.split(",");
+			for(var i=0;i<sizeList_arr.length;i++){
+				var $newlis = $("<li/>");
+				if(i==0){
+					$newlis.addClass('attr_selected');
+				}
+				$newlis.html(sizeList_arr[i]+"<em></em>").appendTo($goodsMsg.find('.size_list'));
+
+			}
+			$goodsMsg.find('.color_list').html("");
+			var colorList_arr = goodsData.color.split(",");
+			for(var i=0;i<colorList_arr.length;i++){
+				var $newlis = $("<li/>");
+				if(i==0){
+					$newlis.addClass('attr_selected');
+				}
+				$newlis.html(colorList_arr[i]+"<em></em>").appendTo($goodsMsg.find('.color_list'));
+
+			}
+
+			$goodsMsg.find(".size_val").text($goodsMsg.find('.size_list').find("li").eq(0).text());
+			$goodsMsg.find(".color_val").text($goodsMsg.find('.color_list').find("li").eq(0).text());
+
+			// 加载商品详情的商品信息
+			$attrList.find("li").eq(0).text("品牌："+goodsData.style);
+			$attrList.find("li").eq(1).text("货号："+goodsData.Art_Num);
+			var sizemsg = "";
+			for(var i=0;i<sizeList_arr.length;i++){
+				sizemsg += sizeList_arr[i] + ' ';
+			}
+			$attrList.find("li").eq(2).text("货号："+sizemsg);
+			var colormsg = "";
+			for(var i=0;i<colorList_arr.length;i++){
+				colormsg += colorList_arr[i] + ' ';
+			}
+			$attrList.find("li").eq(3).text("货号："+colormsg);
+
+			// 加载商品详情图片
+			$imgShow.html("");
+			for(var i=0;i<goodsData.detailsNum;i++){
+				var imgs = $("<img/>");
+				imgs.attr("src","http://localhost/HD/img/goods/"+goodsData["img_details"+i]);
+				imgs.appendTo($imgShow);
+			}
+			$("<span/>").text('没空去韩国？就来韩都衣舍官网！韩都衣舍官网，网上购物首选。').appendTo($imgShow);
+		}	
+	});
+
+
+
+
+
 
 	// 判断是否为登录状态
 	var cookies = document.cookie.split("; ");
@@ -65,9 +165,6 @@ $(function(){
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
 			location.href = "http://localhost/HD/html/login.html";
 		});
-
-
-
 
 	// 悬浮盒子和悬浮搜索栏的出现和隐藏
 	$(window).scroll(function() {
@@ -259,6 +356,26 @@ $(function(){
 		$(document).off("mousemove");
 	});
 
+	// tabBar点击转换标签
+	$tabBar.on("click","li",function(e){
+		$tabBar.find('li').removeClass('tabBar_selected');
+		$(this).addClass('tabBar_selected');
+		e.preventDefault();
+		$detailsArea.find(">li").hide();
+		$detailsArea.find(">li").eq($(this).index()).show();
+	});
+
+	// tabBar悬浮
+	$(document).on("scroll",function(){
+		if($("body").scrollTop() >= 920){
+			$tabBar.addClass('tabBar_fixed');
+			$tabBar.find(".quickAddCart").show();
+		}
+		else{
+			$tabBar.removeClass('tabBar_fixed');
+			$tabBar.find(".quickAddCart").hide();
+		}
+	});
 
 
 
