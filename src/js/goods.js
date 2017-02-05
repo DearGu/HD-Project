@@ -26,14 +26,17 @@ $(function(){
 	var $attrList = $(".attr_list");
 	var $imgShow = $(".imgShow");
 	var $detailsArea = $(".details_area");
-
+	var $addCartBtn = $(".addCart_btn");
+	var account;
+	// 创建空的购物车列表
+	var cartList = new Array();
 	// 根据search参数获取商品的信息
 	var gID = location.search.split("=")[1];
 	$.get('http://localhost/HD/php/goods.php',{goodsID:gID},function(data) {
 		var res = JSON.parse(data);
 		var goodsData = res.data[0]
 		if(res.msg == "success"){
-			console.log(goodsData);
+			// console.log(goodsData);
 			$goodsTitle.text(goodsData.goodsTitle);
 			$goodsStyle.text(goodsData.style);
 			$showZone.find("img").attr({
@@ -115,16 +118,26 @@ $(function(){
 		}	
 	});
 
-
+	// 获取当前cookies
+	var cookies = document.cookie.split("; ");
+	for(var i=0;i<cookies.length;i++){
+		var arr = cookies[i].split("=");
+		if(arr[0] == "cartList"){
+			cartList = JSON.parse(arr[1]);
+		}
+	}
 
 
 
 
 	// 判断是否为登录状态
 	var cookies = document.cookie.split("; ");
+	var islogin = 0;
 	for(var i=0;i<cookies.length;i++){
 		var arr = cookies[i].split("=");
 		if(arr[0] == "username"){
+			islogin = 1;
+			account = arr[1];
 			$headerUl.find(">li").eq(0).hide();
 			$headerUl.find(">li").eq(1).hide();
 			$headerUl.find(">li").eq(2).hide();
@@ -159,12 +172,35 @@ $(function(){
 	// 退出按钮绑定点击事件
 		var $outBtn = $(".out");
 		$outBtn.on("click",function(){
+			islogin = 0;
 			var now = new Date();
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
-			location.href = "http://localhost/HD/html/login.html";
+			location.reload();
 		});
+
+
+
+	// 如果登录了检测个人是否存在购物车列表
+	if(islogin == 1){
+		var res_data = new Array();
+		// 读取个人的购物车列表
+		$.post("http://localhost/HD/php/cart_select.php",{username:account},function(data){
+			var res = JSON.parse(data);
+			if(res.msg == "success"){
+				res_data = JSON.parse(res.data[0].shoplist);
+				if(cartList.length==0 && res_data.length > 0){
+					cartList = res_data;
+					document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
+				}
+			}	
+		});
+		
+	}
+
+
+
 
 	// 悬浮盒子和悬浮搜索栏的出现和隐藏
 	$(window).scroll(function() {
@@ -377,6 +413,63 @@ $(function(){
 		}
 	});
 
+	// 给加入购物车按钮绑定点击事件
+	$addCartBtn.on("click",function(){
+		if(parseInt($buyNum.val()) > parseInt($goodsMsg.find('.inventory').text())){
+			alert("商品数量不能大于库存数量");
+			return;
+		}
+		else if(parseInt($buyNum.val()) <= 0){
+			alert("请输入正确的购买数量");
+			return;
+		}
+		else{
+			// 重点（点击时更新cookie数据）
+			var cookies = document.cookie.split("; ");
+			for(var i=0;i<cookies.length;i++){
+				var arr = cookies[i].split("=");
+				if(arr[0] == "cartList"){
+					cartList = JSON.parse(arr[1]);
+				}
+			}
+
+			var goodsObject = {};
+			goodsObject.gId = gID;
+			goodsObject.gImg = $showZone.find("img").attr("src");
+			goodsObject.gTitle = $goodsMsg.find(".produce_name").text();
+			goodsObject.gSize = $sizeVal.text();
+			goodsObject.gColor = $colorVal.text();
+			goodsObject.oPrice = $goodsMsg.find('.market_price').text();
+			goodsObject.gPrice = $goodsMsg.find('.promote_price').text();
+			goodsObject.gNum = $buyNum.val();
+			goodsObject.gInventory = $goodsMsg.find('.inventory').text();
+			
+			if(cartList.length == 0){
+				cartList.push(goodsObject);
+			}
+			else{
+				for(var i=0;i<cartList.length;i++){
+					if(cartList[i].gId == goodsObject.gId && cartList[i].gSize == goodsObject.gSize && cartList[i].gColor == goodsObject.gColor){
+							cartList[i].gNum = parseInt(cartList[i].gNum) + parseInt(goodsObject.gNum);
+							break;
+					}
+				}
+				if(i==cartList.length){
+					cartList.push(goodsObject);
+				}
+			}
+			// 将购物车列表写入cookie
+			document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
+			var kk = JSON.stringify(cartList);
+			if(islogin == 1){
+					// $.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+					// 	console.log(data);
+					// });
+
+					
+				}	
+		}
+	});
 
 
 

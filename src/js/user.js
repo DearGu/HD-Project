@@ -52,6 +52,7 @@ $(function(){
 	// 退出按钮绑定点击事件
 		var $outBtn = $(".out");
 		$outBtn.on("click",function(){
+			islogin = 0;
 			var now = new Date();
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
