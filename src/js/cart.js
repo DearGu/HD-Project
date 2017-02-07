@@ -11,6 +11,7 @@ $(function(){
 	var $cartContent = $(".cart_content");
 	var $shopCartArrow = $(".shop_cart_arrow");
 	var $wramTip = $(".warm_tip_content");
+	var account;
 
 // 读取购物列表cookie
 	var cList = new Array();
@@ -23,6 +24,7 @@ $(function(){
 		}
 		if(arr[0] == "username"){
 			islogin = 1;
+			account = arr[1];
 			$headerUl.find(">li").eq(0).hide();
 			$headerUl.find(">li").eq(1).hide();
 			$headerUl.find(">li").eq(2).hide();
@@ -63,6 +65,7 @@ $(function(){
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
+			document.cookie = "cartList=gg" + ";expires=" + now + ";path=/";
 			location.reload();
 		});
 
@@ -204,6 +207,11 @@ $(function(){
 		$subCount.text("￥"+subprice);
 
 		document.cookie = "cartList=" + JSON.stringify(cList) + ";path=/";
+		if(islogin == 1){
+				var kk = JSON.stringify(cList);		
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+				});				
+			}
 	});
 
 // 给数量+-按钮绑定点击事件
@@ -257,6 +265,11 @@ $(function(){
 		$subCount.text("￥ "+subprice);
 
 		document.cookie = "cartList=" + JSON.stringify(cList) + ";path=/";
+		if(islogin == 1){
+				var kk = JSON.stringify(cList);
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+				});				
+			}
 	});
 
 	$increase.on("click",function(){
@@ -306,6 +319,69 @@ $(function(){
 		$subCount.text("￥ "+subprice);
 
 		document.cookie = "cartList=" + JSON.stringify(cList) + ";path=/";
+		if(islogin == 1){
+				var kk = JSON.stringify(cList);
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+				});				
+			}
+	});
+
+// 输入框改变总价和cookie改变
+	$s_input.on("change",function(){
+		// 输入框改变后小计更新
+		var currentNum = $(this).val();
+		if(currentNum <= 0){
+			$(this).val(1);
+			currentNum = 1;
+		}
+		
+		var $currentColor;
+		var $currentSize;
+		var $currentID = $(this).parents("li").find(".shop_product").attr("data-goodsID");
+		var $sizeColor = $(this).parents("li").find(".size_color").text().split(" ");
+		for(var i=0;i<$sizeColor.length;i++){
+			var arr = $sizeColor[i].split("：");
+			if(arr[0]=="颜色"){
+				$currentColor = arr[1];
+			}
+			if(arr[0]=="尺码"){
+				$currentSize = arr[1];
+			}
+		}	
+		for(var i=0;i<cList.length;i++){
+			if(cList[i].gId == $currentID && cList[i].gSize == $currentSize && cList[i].gColor == $currentColor){
+				cList[i].gNum = currentNum;
+				break;
+			}
+		}
+
+		if(currentNum > parseInt($(this).attr("data-inventory"))){
+			alert("商品数量不能大于库存数量");
+			$(this).val(parseInt($(this).attr("data-inventory")));
+			currentNum = parseInt($(this).attr("data-inventory"));
+		}
+		var $current_shopMoney = $(this).parents("li").find(".shop_money");
+		var currentAttr = $(this).parents("li").find(".shop_price").find('span').text().split("￥");
+		var currentMoney = currentNum * parseInt(currentAttr[1]);
+		$current_shopMoney.text("￥"+currentMoney+".00");
+
+		// 输入框改变后总价更新
+		var $shopList = $(".shop_list");
+		var $subCount = $(".totallCount");
+		var shop_lis = $shopList.find('>li');
+		var subprice = 0;
+		for(var i=0;i<shop_lis.length;i++){
+			var money = $(shop_lis[i]).find(".shop_money").text().split("￥");
+			subprice += parseInt(money[1]);
+		}
+		$subCount.text("￥ "+subprice);
+
+		document.cookie = "cartList=" + JSON.stringify(cList) + ";path=/";
+		if(islogin == 1){
+				var kk = JSON.stringify(cList);
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+				});				
+			}
 	});
 
 // 给继续购物按钮绑定点击事件

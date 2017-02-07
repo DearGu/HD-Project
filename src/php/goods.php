@@ -7,4 +7,7 @@
     if($res){
         echo '{"msg":"success","data":'.$J_res.'}';
     }
+    else{
+    	echo '{"msg":"fail"}';
+    }
 ?>

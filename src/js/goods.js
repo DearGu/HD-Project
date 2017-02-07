@@ -28,15 +28,20 @@ $(function(){
 	var $detailsArea = $(".details_area");
 	var $addCartBtn = $(".addCart_btn");
 	var account;
+	var mPrice;
 	// 创建空的购物车列表
 	var cartList = new Array();
+	var cookieCheck = 0;
+
 	// 根据search参数获取商品的信息
 	var gID = location.search.split("=")[1];
 	$.get('http://localhost/HD/php/goods.php',{goodsID:gID},function(data) {
 		var res = JSON.parse(data);
-		var goodsData = res.data[0]
+		// console.log(res);
+		// var goodsData = res.data[0];
 		if(res.msg == "success"){
 			// console.log(goodsData);
+			var goodsData = res.data[0];
 			$goodsTitle.text(goodsData.goodsTitle);
 			$goodsStyle.text(goodsData.style);
 			$showZone.find("img").attr({
@@ -70,6 +75,7 @@ $(function(){
 			$goodsMsg.find('.sale_count').text(goodsData.sales);
 			$goodsMsg.find('.inventory').text(goodsData.inventory);
 			$goodsMsg.find('.size_list').html("");
+			mPrice = parseInt(goodsData.goodsPrice);
 			var sizeList_arr = goodsData.size.split(",");
 			for(var i=0;i<sizeList_arr.length;i++){
 				var $newlis = $("<li/>");
@@ -115,6 +121,11 @@ $(function(){
 				imgs.appendTo($imgShow);
 			}
 			$("<span/>").text('没空去韩国？就来韩都衣舍官网！韩都衣舍官网，网上购物首选。').appendTo($imgShow);
+		}
+		else if(res.msg == "fail"){
+			console.log(666);
+			alert("页面跑远了，即将返回首页!");
+			location.href = "http://localhost/HD/index.html";
 		}	
 	});
 
@@ -177,6 +188,7 @@ $(function(){
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
+			document.cookie = "cartList=gg" + ";expires=" + now + ";path=/";
 			location.reload();
 		});
 
@@ -194,6 +206,46 @@ $(function(){
 					cartList = res_data;
 					document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
 				}
+				else if(cartList.length >0 && res_data.length > 0){
+					// console.log(cookieCheck);
+					// 判断cookie的购物车列表是否与后台购物车列表相同，若相同则融合
+					for(var m=0;m<cartList.length;m++){
+						if(cartList[m].gId != res_data[m].gId || cartList[m].gImg != res_data[m].gImg || cartList[m].gTitle != res_data[m].gTitle || cartList[m].gSize != res_data[m].gSize || cartList[m].gColor != res_data[m].gColor || cartList[m].oPrice != res_data[m].oPrice || cartList[m].gPrice != res_data[m].gPrice || cartList[m].gNum != res_data[m].gNum || cartList[m].gInventory != res_data[m].gInventory){
+							break;
+						}
+					}
+					if(m==cartList.length){
+						cookieCheck = 1;
+					}
+
+					if(cookieCheck == 0){
+						for(var i=0;i<res_data.length;i++){
+							for(var j=0;j<cartList.length;j++){
+								if(cartList[j].gId == res_data[i].gId && cartList[j].gSize == res_data[i].gSize && cartList[j].gColor == res_data[i].gColor){
+									cartList[j].gNum = parseInt(cartList[j].gNum) + parseInt(res_data[i].gNum);
+									break;
+								}
+							}
+							if(j==cartList.length){
+									cartList.push(res_data[i]);
+							}
+						}
+						document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
+					}
+					
+				}	
+				else if(cartList.length >0 && res_data.length == 0){
+					res_data = cartList;
+					var mm = JSON.stringify(res_data);
+					$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:mm},function(data){
+						});
+				}
+			}
+			if(res.msg == "fail"){
+				res_data = cartList;
+				var cc = JSON.stringify(res_data);
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:cc},function(data){
+					});
 			}	
 		});
 		
@@ -349,7 +401,15 @@ $(function(){
 		currentNum++;
 		$buyNum.val(currentNum);
 	});
-
+	// 输入框绑定改变触发事件
+	$buyNum.on("change",function(){
+		var currentNum = parseInt($buyNum.val());
+		if(!currentNum || !/\d/.test(currentNum)){
+			alert("请输入正确的购买数量");
+			currentNum = 1;
+			$buyNum.val(currentNum);
+		}
+	});
 	// 给商品小图片绑定点击事件
 	$smallShow.on("click","li",function(){
 		$smallShow.find('li').removeClass('sm_selected');
@@ -440,7 +500,8 @@ $(function(){
 			goodsObject.gSize = $sizeVal.text();
 			goodsObject.gColor = $colorVal.text();
 			goodsObject.oPrice = $goodsMsg.find('.market_price').text();
-			goodsObject.gPrice = $goodsMsg.find('.promote_price').text();
+			// goodsObject.gPrice = $goodsMsg.find('.promote_price').text();
+			goodsObject.gPrice = mPrice;
 			goodsObject.gNum = $buyNum.val();
 			goodsObject.gInventory = $goodsMsg.find('.inventory').text();
 			
@@ -462,12 +523,10 @@ $(function(){
 			document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
 			var kk = JSON.stringify(cartList);
 			if(islogin == 1){
-					// $.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
-					// 	console.log(data);
-					// });
-
-					
-				}	
+					$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:kk},function(data){
+					});				
+				}
+			alert("商品添加成功");	
 		}
 	});
 

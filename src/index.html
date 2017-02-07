@@ -6,6 +6,7 @@
 	<link rel="stylesheet" href="css/index.css" />
 	<script src="js/jquery-3.1.1.js"></script>
 	<script src="js/index.js"></script>
+	<script src="js/jquery.lazyload.min.js"></script>
 </head>
 <body>
 	<!-- 悬浮搜索栏 -->
@@ -31,7 +32,7 @@
 		<a href=""></a>
 	</div>
 	<!--顶部-->
-	<header>     
+	<header class="lazy">     
 		<div class="wrap">
 			<div class="header_dev clear">
 				<div class="header_fl clear">
@@ -49,7 +50,7 @@
 					<ul class="clear">
 						<li>您好，欢迎光临韩都衣舍！</li>
 						<li>
-							<a href="http://localhost/HD/html/login.html" target="_blank">登录</a>
+							<a href="http://localhost/HD/html/login.html">登录</a>
 						</li>
 						<li>
 							<a href="http://localhost/HD/html/register.html" target="_blank">注册</a>
@@ -208,7 +209,7 @@
 		</div>
 	</div>
 	<!--商品分类-->
-	<div class="goods_list">
+	<div class="goods_list lazy">
 		<div class="wrap clear">
 			<ul>
 				<li>
@@ -483,10 +484,10 @@
 		</div>
 	</div>
 	<!--轮播图-->
-	<div class="Carousel clear">
-		<a href=""><img src="img/index/lunbo1.png" alt="" /></a>
-		<a href=""><img src="img/index/lunbo2.png" alt="" /></a>
-		<a href=""><img src="img/index/lunbo3.png" alt=" "/></a>
+	<div class="Carousel clear lazy">
+		<a href=""><img src="img/index/lunbo1.png" height="450" width="1423" alt="" /></a>
+		<a href=""><img src="img/index/lunbo2.png" height="450" width="1423" alt="" /></a>
+		<a href=""><img src="img/index/lunbo3.png" height="449" width="1423" alt=" "/></a>
 		<ul class="tab clear">
 			<li class="selected">Spring Look</li>
 			<li>专区满199减30</li>
@@ -494,7 +495,7 @@
 		</ul>
 	</div>
 	<!--公告-->
-	<div class="notice">
+	<div class="notice lazy">
 		<div class="wrap">
 			<img src="img/index/gg1.jpg"/>
 		</div>
@@ -504,7 +505,7 @@
 		<a href=""></a>	
 	</div>
 	<!--动态新闻-->
-	<div class="introduce">
+	<div class="introduce lazy">
 		<div class="wrap clear">
 			<div class="company">
 				<div class="company_title">
@@ -600,7 +601,7 @@
 						</div>
 					</div>
 					<div class="news_two">
-						<a href=""><img src="img/index/qy2.jpg"/></a>
+						<a href=""><img src="img/index/qy2.jpg" height="174" width="481"/></a>
 						<ul>
 							<li>
 								<a href="">签约三大韩星：韩都衣舍欲书写互联网品牌的中国时尚传奇</a>
@@ -674,10 +675,10 @@
 		</div>
 	</div>
 	<!--视频广告-->
-	<div class="banner_video">
+	<div class="banner_video lazy">
 		<div class="wrap clear">
 			<div class="banner_videoL">
-				<a href=""><img src="img/index/680.jpg"/></a>
+				<a href=""><img src="img/index/680.jpg" height="316" width="680"/></a>
 			</div>
 			<div class="banner_videoR">
 				<embed width="498" height="316" wmode="opaque" type="application/x-shockwave-flash" src="http://vodcdn.video.taobao.com/player/ugc/tb_ugc_pieces_core_player_loader.swf?version=1.0.20150330&amp;vid=36759941&amp;uid=1585817269&amp;p=2&amp;t=1&amp;rid=&amp;random=6666" allowfullscreen="true" flashvars="scene=taobao_shop" allowscriptaccess="never">
@@ -685,7 +686,7 @@
 		</div>		
 	</div>
 	<!--新品上市-->
-	<div class="new_arrival">
+	<div class="new_arrival lazy">
 		<div class="wrap">
 			<div class="tab_brand">
 				<ul class="clear">
@@ -961,7 +962,7 @@
 		</div>
 	</div>
 	<!--H韩风时尚女装-->
-	<div class="HF_girl">
+	<div class="HF_girl lazy">
 		<div class="wrap">
 			<div class="keyword clear">
 				<ul class="clear">					        
@@ -1266,7 +1267,7 @@
 		</div>
 	</div>
 	<!-- 迪葵纳妈妈装 -->
-	<div class="DI_mum">
+	<div class="DI_mum lazy">
 		<div class="wrap">
 			<div class="keyword clear">
 				<ul class="clear">				          
@@ -1386,7 +1387,7 @@
 		</div>
 	</div>
 	<!-- 娜娜少女装 -->
-	<div class="NN_girl">
+	<div class="NN_girl lazy">
 		<div class="wrap">
 			<div class="keyword clear">
 				<ul class="clear">	
@@ -1501,7 +1502,7 @@
 		</div>
 	</div>
 	<!-- 米妮哈鲁童装 -->
-	<div class="MH_child">
+	<div class="MH_child lazy">
 		<div class="wrap">
 			<div class="keyword clear">
 				<ul class="clear">	
@@ -1621,7 +1622,7 @@
 		</div>
 	</div>
 	<!-- 尼班诗女装 -->
-	<div class="NBS_girl">
+	<div class="NBS_girl lazy">
 		<div class="wrap">
 			<div class="keyword clear">
 				<ul class="clear">	   
@@ -1740,13 +1741,13 @@
 		</div>
 	</div>
 	<!-- 底部广告 -->
-	<div class="foot_banner">
+	<div class="foot_banner lazy">
 		<div class="wrap">
 			<a href=""><img src="img/index/1483522237043334375.jpg" alt=""></a>
 		</div>
 	</div>
 	<!-- 韩都资讯 -->
-	<div class="HD_msg">
+	<div class="HD_msg lazy">
 		<div class="wrap">
 			<div class="HD_msg_title">
 				<span><a href="">更多></a></span>
@@ -1788,7 +1789,7 @@
 		</div>		
 	</div>
 	<!-- 底部信息 -->
-	<div class="footer_info">
+	<div class="footer_info lazy">
 		<div class="wrap clear">
 			<div>
 				<h3></h3>
@@ -1854,7 +1855,7 @@
 		</div>
 	</div>
 	<!-- 版权信息 -->
-	<div class="copyright_info">
+	<div class="copyright_info lazy">
 		<div class="wrap">
 			<div class="copyright_info_Top">
 				<img src="img/index/copyright.gif" height="37" width="33" alt=""><span>鲁ICP备14003322号-2 &copy; 2006-2015 handu.com All Rights Reserved.</span>

@@ -57,6 +57,7 @@ $(function(){
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
+			document.cookie = "cartList=gg" + ";expires=" + now + ";path=/";
 			location.href = "http://localhost/HD/html/login.html";
 		});
 

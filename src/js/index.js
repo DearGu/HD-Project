@@ -23,12 +23,30 @@ $(function(){
 	var $headerFr = $(".header_fr");
 	var $headerUl = $headerFr.find(">ul").eq(0);
 	var $headerDev = $(".header_dev");
+	var account;
+	// 创建空的购物车列表
+	var cartList = new Array();
+	var cookieCheck = 0;
 
-	// 判断是否为登录状态
+	$("img").lazyload({effectspeed:3000});
+
+	// 获取当前cookies
 	var cookies = document.cookie.split("; ");
 	for(var i=0;i<cookies.length;i++){
 		var arr = cookies[i].split("=");
+		if(arr[0] == "cartList"){
+			cartList = JSON.parse(arr[1]);
+		}
+	}
+
+	// 判断是否为登录状态
+	var cookies = document.cookie.split("; ");
+	var islogin = 0;
+	for(var i=0;i<cookies.length;i++){
+		var arr = cookies[i].split("=");
 		if(arr[0] == "username"){
+			islogin = 1;
+			account = arr[1];
 			$headerUl.find(">li").eq(0).hide();
 			$headerUl.find(">li").eq(1).hide();
 			$headerUl.find(">li").eq(2).hide();
@@ -63,14 +81,71 @@ $(function(){
 	// 退出按钮绑定点击事件
 		var $outBtn = $(".out");
 		$outBtn.on("click",function(){
+			islogin = 0;
 			var now = new Date();
 			now.setDate(now.getDate()-1);
 			document.cookie = "username=gg" + ";expires=" + now + ";path=/";
 			document.cookie = "psw=gg" + ";expires=" + now + ";path=/";
+			document.cookie = "cartList=gg" + ";expires=" + now + ";path=/";
 			location.href = "http://localhost/HD/index.html";
 		});
 
+	// 如果登录了检测个人是否存在购物车列表
+	if(islogin == 1){
+		var res_data = new Array();
+		// 读取个人的购物车列表
+		$.post("http://localhost/HD/php/cart_select.php",{username:account},function(data){
+			var res = JSON.parse(data);
+			if(res.msg == "success"){
+				res_data = JSON.parse(res.data[0].shoplist);
+				if(cartList.length==0 && res_data.length > 0){
+					cartList = res_data;
+					document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
+				}
+				else if(cartList.length >0 && res_data.length > 0){
+					console.log(cookieCheck);
+					// 判断cookie的购物车列表是否与后台购物车列表相同，若相同则融合
+					for(var m=0;m<cartList.length;m++){
+						if(cartList[m].gId != res_data[m].gId || cartList[m].gImg != res_data[m].gImg || cartList[m].gTitle != res_data[m].gTitle || cartList[m].gSize != res_data[m].gSize || cartList[m].gColor != res_data[m].gColor || cartList[m].oPrice != res_data[m].oPrice || cartList[m].gPrice != res_data[m].gPrice || cartList[m].gNum != res_data[m].gNum || cartList[m].gInventory != res_data[m].gInventory){
+							break;
+						}
+					}
+					if(m==cartList.length){
+						cookieCheck = 1;
+					}
 
+					if(cookieCheck == 0){
+						for(var i=0;i<res_data.length;i++){
+							for(var j=0;j<cartList.length;j++){
+								if(cartList[j].gId == res_data[i].gId && cartList[j].gSize == res_data[i].gSize && cartList[j].gColor == res_data[i].gColor){
+									cartList[j].gNum = parseInt(cartList[j].gNum) + parseInt(res_data[i].gNum);
+									break;
+								}
+							}
+							if(j==cartList.length){
+									cartList.push(res_data[i]);
+							}
+						}
+						document.cookie = "cartList=" + JSON.stringify(cartList) + ";path=" + "/";
+					}
+					
+				}
+				else if(cartList.length >0 && res_data.length == 0){
+					res_data = cartList;
+					var mm = JSON.stringify(res_data);
+					$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:mm},function(data){
+						});
+				}
+			}
+			if(res.msg == "fail"){
+				res_data = cartList;
+				var cc = JSON.stringify(res_data);
+				$.post("http://localhost/HD/php/goods_update.php",{username:account,cartlist:cc},function(data){
+					});
+			}	
+		});
+		
+	}
 
 
 
@@ -171,7 +246,7 @@ $(function(){
 						alt:res[i].data[idx+5].goodsTitle
 					});
 					$(item).find('a').attr("title",res[i].data[idx+5].goodsTitle);
-					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx].goodsID);
+					$(item).find('a').attr("href","http://localhost/HD/html/goods.html?goodsID="+res[i].data[idx+5].goodsID);
 					$(item).find('a').attr("target","_blank");
 					$(item).find(".money").text(res[i].data[idx+5].goodsPrice + ".00");
 					$(item).find(".old_money").text(res[i].data[idx+5].goodsOldPrice + ".00");
