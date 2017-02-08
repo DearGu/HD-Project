@@ -9,7 +9,21 @@
 /*!40101 SET NAMES utf8 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
--- 正在导出表  hd_project.accout 的数据：~14 rows (大约)
+
+-- 导出 hd_project 的数据库结构
+CREATE DATABASE IF NOT EXISTS `hd_project` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `hd_project`;
+
+
+-- 导出  表 hd_project.accout 结构
+CREATE TABLE IF NOT EXISTS `accout` (
+  `userID` int(11) NOT NULL AUTO_INCREMENT,
+  `userName` char(50) NOT NULL DEFAULT '0',
+  `password` char(50) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`userID`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COMMENT='账户信息';
+
+-- 正在导出表  hd_project.accout 的数据：~8 rows (大约)
 /*!40000 ALTER TABLE `accout` DISABLE KEYS */;
 INSERT INTO `accout` (`userID`, `userName`, `password`) VALUES
 	(1, 'DD@123.com', '123'),
@@ -28,6 +42,15 @@ INSERT INTO `accout` (`userID`, `userName`, `password`) VALUES
 	(14, 'ko@123.com', '12345678o');
 /*!40000 ALTER TABLE `accout` ENABLE KEYS */;
 
+
+-- 导出  表 hd_project.cart 结构
+CREATE TABLE IF NOT EXISTS `cart` (
+  `cartID` int(50) NOT NULL AUTO_INCREMENT,
+  `username` char(200) NOT NULL DEFAULT '0',
+  `shoplist` text,
+  PRIMARY KEY (`cartID`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COMMENT='购物车表';
+
 -- 正在导出表  hd_project.cart 的数据：~6 rows (大约)
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
 INSERT INTO `cart` (`cartID`, `username`, `shoplist`) VALUES
@@ -39,7 +62,68 @@ INSERT INTO `cart` (`cartID`, `username`, `shoplist`) VALUES
 	(6, 'ko@123.com', '[{"gId":"10012","gImg":"http://localhost/HD/img/goods/DK/10012/big/20161231031203_WQ6274.jpg","gTitle":"迪葵纳妈妈装2017春装新款中年中老年女装长袖针织衫WQ6274沣0103","gSize":"L","gColor":"米色","oPrice":"299.00","gPrice":"169.00","gNum":"1","gInventory":"55"}]');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
--- 正在导出表  hd_project.goods 的数据：~55 rows (大约)
+
+-- 导出  表 hd_project.goods 结构
+CREATE TABLE IF NOT EXISTS `goods` (
+  `goodsID` char(50) NOT NULL,
+  `goodsTitle` char(50) NOT NULL,
+  `Art_Num` char(50) NOT NULL,
+  `goodsPrice` float NOT NULL,
+  `goodsOldPrice` float NOT NULL,
+  `sales` int(50) NOT NULL,
+  `size` char(50) NOT NULL,
+  `color` char(200) NOT NULL,
+  `inventory` int(50) NOT NULL,
+  `style` char(50) NOT NULL,
+  `img_b` char(200) NOT NULL,
+  `img_s1` text NOT NULL,
+  `img_s2` text NOT NULL,
+  `img_s3` text NOT NULL,
+  `img_s4` text NOT NULL,
+  `img_s5` text NOT NULL,
+  `detailsNum` text NOT NULL,
+  `img_details0` text,
+  `img_details1` text,
+  `img_details2` text,
+  `img_details3` text,
+  `img_details4` text,
+  `img_details5` text,
+  `img_details6` text,
+  `img_details7` text,
+  `img_details8` text,
+  `img_details9` text,
+  `img_details10` text,
+  `img_details11` text,
+  `img_details12` text,
+  `img_details13` text,
+  `img_details14` text,
+  `img_details15` text,
+  `img_details16` text,
+  `img_details17` text,
+  `img_details18` text,
+  `img_details19` text,
+  `img_details20` text,
+  `img_details21` text,
+  `img_details22` text,
+  `img_details23` text,
+  `img_details24` text,
+  `img_details25` text,
+  `img_details26` text,
+  `img_details27` text,
+  `img_details28` text,
+  `img_details29` text,
+  `img_details30` text,
+  `img_details31` text,
+  `img_details32` text,
+  `img_details33` text,
+  `img_details34` text,
+  `img_details35` text,
+  `img_details36` text,
+  `img_details37` text,
+  PRIMARY KEY (`goodsID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='商品信息表';
+
+-- 正在导出表  hd_project.goods 的数据：~52 rows (大约)
 /*!40000 ALTER TABLE `goods` DISABLE KEYS */;
 INSERT INTO `goods` (`goodsID`, `goodsTitle`, `Art_Num`, `goodsPrice`, `goodsOldPrice`, `sales`, `size`, `color`, `inventory`, `style`, `img_b`, `img_s1`, `img_s2`, `img_s3`, `img_s4`, `img_s5`, `detailsNum`, `img_details0`, `img_details1`, `img_details2`, `img_details3`, `img_details4`, `img_details5`, `img_details6`, `img_details7`, `img_details8`, `img_details9`, `img_details10`, `img_details11`, `img_details12`, `img_details13`, `img_details14`, `img_details15`, `img_details16`, `img_details17`, `img_details18`, `img_details19`, `img_details20`, `img_details21`, `img_details22`, `img_details23`, `img_details24`, `img_details25`, `img_details26`, `img_details27`, `img_details28`, `img_details29`, `img_details30`, `img_details31`, `img_details32`, `img_details33`, `img_details34`, `img_details35`, `img_details36`, `img_details37`) VALUES
 	('10001', '韩都衣舍2017韩版女装春装新款条纹套头宽松高领毛衣LF7092蒖', 'LF7092', 168, 328, 10, 'S,M,L', '藏蓝色,米白色,灰色', 249, 'HSTYLE女装', 'HS/10001/big/1055410_G_1483584631438.jpg', 'HS/10001/big/1055410_G_1483584631438.jpg', 'HS/10001/big/201701051001161_LF7092.jpg', 'HS/10001/big/201701051001162_LF7092.jpg', 'HS/10001/big/201701051001163_LF7092.jpg', 'HS/10001/big/201701051001164_LF7092.jpg', '38', 'HS/10001/details/TB2Mblsa9tkpuFjy0FhXXXQzFXa-263817957.jpg', 'HS/10001/details/TB28npsaYtlpuFjSspfXXXLUpXa-263817957.jpg', 'HS/10001/details/TB25L1xbblmpuFjSZFlXXbdQXXa-263817957.jpg', 'HS/10001/details/TB2srBxaW8lpuFjy0FpXXaGrpXa-263817957.jpg', 'HS/10001/details/TB2Y_1ubctnpuFjSZFKXXalFFXa-263817957.gif', 'HS/10001/details/TB24OSba80lpuFjSszdXXcdxFXa-263817957.jpg', 'HS/10001/details/TB2_r5AbbxmpuFjSZJiXXXauVXa-263817957.jpg', 'HS/10001/details/TB27tSubbJmpuFjSZFwXXaE4VXa-263817957.jpg', 'HS/10001/details/TB2hb9AbbxmpuFjSZJiXXXauVXa-263817957.jpg', 'HS/10001/details/TB2p2Wda9xjpuFjSszeXXaeMVXa-263817957.jpg', 'HS/10001/details/TB2Wbdxa88lpuFjy0FnXXcZyXXa-263817957.jpg', 'HS/10001/details/TB2l9Vsa4XlpuFjSsphXXbJOXXa-263817957.jpg', 'HS/10001/details/TB2y2fsbhlmpuFjSZPfXXc9iXXa-263817957.jpg', 'HS/10001/details/TB27t6pbbJmpuFjSZFBXXXaZXXa-263817957.jpg', 'HS/10001/details/TB2irhxa88lpuFjy0FnXXcZyXXa-263817957.jpg', 'HS/10001/details/TB2UNhUcNBmpuFjSZFsXXcXpFXa-263817957.jpg', 'HS/10001/details/TB2oD8TcItnpuFjSZFKXXalFFXa-263817957.jpg', 'HS/10001/details/TB2CDt3cS0mpuFjSZPiXXbssVXa-263817957.jpg', 'HS/10001/details/TB2ej2nbhxmpuFjSZFNXXXrRXXa-263817957.jpg', 'HS/10001/details/TB2Dbpwa3FkpuFjSspnXXb4qFXa-263817957.jpg', 'HS/10001/details/TB2L6TobctnpuFjSZFvXXbcTpXa-263817957.jpg', 'HS/10001/details/TB2FeyxbipnpuFjSZFkXXc4ZpXa-263817957.jpg', 'HS/10001/details/TB2.rpsa9tkpuFjy0FhXXXQzFXa-263817957.jpg', 'HS/10001/details/TB2r_Srbm4mpuFjSZFOXXaUqpXa-263817957.jpg', 'HS/10001/details/TB2x5Vpa3JkpuFjSszcXXXfsFXa-263817957.jpg', 'HS/10001/details/TB2eSwPbItnpuFjSZFvXXbcTpXa-263817957.jpg', 'HS/10001/details/TB2IJeabrJkpuFjy1zcXXa5FFXa-263817957.gif', 'HS/10001/details/TB27LSfbB8kpuFjSspeXXc7IpXa-263817957.jpg', 'HS/10001/details/TB2MDqgbwFkpuFjSspnXXb4qFXa-263817957.jpg', 'HS/10001/details/TB2oftqa9BjpuFjy1XdXXaooVXa-263817957.jpg', 'HS/10001/details/TB2SDWxbohnpuFjSZFPXXb_4XXa-263817957.jpg', 'HS/10001/details/TB2KByCbb4npuFjSZFmXXXl4FXa-263817957.gif', 'HS/10001/details/TB2EeluaYXlpuFjSszfXXcSGXXa-263817957.jpg', 'HS/10001/details/TB2tJqCbm8mpuFjSZFMXXaxpVXa-263817957.jpg', 'HS/10001/details/TB2V680bMxlpuFjy0FoXXa.lXXa-263817957.jpg', 'HS/10001/details/TB2.HcMbb0kpuFjy0FjXXcBbVXa-263817957.jpg', 'HS/10001/details/TB2MiQ0bH4npuFjSZFmXXXl4FXa-263817957.jpg', 'HS/10001/details/TB26KqcbrtlpuFjSspfXXXLUpXa-263817957.jpg'),
@@ -99,7 +183,21 @@ INSERT INTO `goods` (`goodsID`, `goodsTitle`, `Art_Num`, `goodsPrice`, `goodsOld
 	('10055', '尼班诗欧美2017春装新款女装条纹宽松流苏衬衫WHZ6167梵', 'WHZ6167', 118, 196, 2, 'S,M,L', '蓝色', 171, '尼班诗', 'NBS/10055/big/20170106030128_WHZ6167.jpg', 'NBS/10055/big/20170106030128_WHZ6167.jpg', 'NBS/10055/big/201701060301281_WHZ6167.jpg', 'NBS/10055/big/201701060301282_WHZ6167.jpg', 'NBS/10055/big/201701060301283_WHZ6167.jpg', 'NBS/10055/big/201701060301284_WHZ6167.jpg', '1', 'NBS/10055/details/TB2hIQXbItnpuFjSZFvXXbcTpXa_!!1652742042.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 /*!40000 ALTER TABLE `goods` ENABLE KEYS */;
 
--- 正在导出表  hd_project.hdindex 的数据：~55 rows (大约)
+
+-- 导出  表 hd_project.hdindex 结构
+CREATE TABLE IF NOT EXISTS `hdindex` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goodsID` char(50) NOT NULL DEFAULT '0',
+  `goodsTitle` char(50) NOT NULL DEFAULT '0',
+  `goodsImg` char(100) NOT NULL DEFAULT '0',
+  `goodsPrice` float NOT NULL DEFAULT '0',
+  `goodsOldPrice` float DEFAULT '0',
+  `type` char(50) NOT NULL DEFAULT '0',
+  `status` char(50) DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8 COMMENT='首页表';
+
+-- 正在导出表  hd_project.hdindex 的数据：~52 rows (大约)
 /*!40000 ALTER TABLE `hdindex` DISABLE KEYS */;
 INSERT INTO `hdindex` (`id`, `goodsID`, `goodsTitle`, `goodsImg`, `goodsPrice`, `goodsOldPrice`, `type`, `status`) VALUES
 	(1, '10001', '韩都衣舍2017韩版女装春装新款条纹套头宽松高领毛衣LF7092蒖', 'img/index/new_arrival/1055410_thumb_G_1483584631360.jpg', 168, 328, '韩风女装', 'new'),
